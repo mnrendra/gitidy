@@ -19,7 +19,8 @@
     "typescript": "^4.9.4"
   },
   "_moduleAliases": {
-    "@cp": "dist/cp"
+    "@cp": "dist/cp",
+    "@clog": "dist/clog"
   },
   "repository": {
     "type": "git",
