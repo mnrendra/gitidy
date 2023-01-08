@@ -22,7 +22,8 @@
   "_moduleAliases": {
     "@cp": "dist/cp",
     "@clog": "dist/clog",
-    "@git": "dist/git"
+    "@git": "dist/git",
+    "@gh": "dist/gh"
   },
   "repository": {
     "type": "git",
