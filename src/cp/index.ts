@@ -1,6 +1,7 @@
-import argv, { argvSync } from './argv'
+import argv, { argvSync, ArgvType } from './argv'
 
 export {
   argv,
-  argvSync
+  argvSync,
+  ArgvType
 }
