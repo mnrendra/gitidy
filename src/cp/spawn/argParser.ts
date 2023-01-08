@@ -14,7 +14,7 @@ export const argParser = (
     cmd = commands.shift() || ''
     args = commands
   } else {
-    cmd = cmd
+    cmd = command
   }
 
   if (Array.isArray(argsOrOpts)) {
