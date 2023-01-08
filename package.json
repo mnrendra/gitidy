@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "description": "A tool for tidying Git flow.",
   "main": "dist",
+  "bin": {
+    "gitidy": "dist/index.js"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/index.js",
     "dev": "npm run build && node .",
     "start": "node ."
   },
