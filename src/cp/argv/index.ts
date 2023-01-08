@@ -1,5 +1,3 @@
 import argv from './argv'
 
-export {
-  argv
-}
+export default argv
