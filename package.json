@@ -12,6 +12,7 @@
     "dev": "npm run build && npm start"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
     "module-alias": "^2.2.2"
   },
   "devDependencies": {
