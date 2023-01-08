@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
-    "dev": "npm run build && node .",
-    "start": "node ."
+    "start": "node .",
+    "dev": "npm run build && npm start"
   },
   "dependencies": {
     "module-alias": "^2.2.2"
