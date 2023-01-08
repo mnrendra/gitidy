@@ -7,4 +7,5 @@ export {
   exec,
   execSync
 }
+
 export default exec

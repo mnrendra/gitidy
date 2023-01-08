@@ -1,5 +1,6 @@
 import argv, { argvSync, ArgvType } from './argv'
 import exec, { execSync, ExecType } from './exec'
+import spawn, { spawnSync, SpawnType } from './spawn'
 
 export {
   argv,
@@ -7,5 +8,8 @@ export {
   ArgvType,
   exec,
   execSync,
-  ExecType
+  ExecType,
+  spawn,
+  spawnSync,
+  SpawnType
 }
