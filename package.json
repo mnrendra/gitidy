@@ -1,0 +1,39 @@
+{
+  "name": "gitidy",
+  "version": "0.1.0",
+  "description": "A tool for tidying Git flow.",
+  "main": "dist",
+  "bin": {
+    "gitidy": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "start": "node .",
+    "dev": "npm run build && npm start"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "module-alias": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  },
+  "_moduleAliases": {
+    "@cp": "dist/cp",
+    "@clog": "dist/clog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnrendra/gitidy.git"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "Muhammad Rendra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnrendra/gitidy/issues"
+  },
+  "homepage": "https://github.com/mnrendra/gitidy#readme"
+}
