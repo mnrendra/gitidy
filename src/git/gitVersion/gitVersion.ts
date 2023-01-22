@@ -17,7 +17,7 @@ const gitVersion = async ({
     process.exit()
   }
 
-  verbose && log(c.grey(stdall))
+  verbose && log(c.grey(`  ${stdall}`))
 
   return stdall
 }

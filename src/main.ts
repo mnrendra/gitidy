@@ -5,7 +5,7 @@ const main = async () => {
   const { cmd, args } = await argv()
 
   switch (cmd) {
-    case 'init': init(args)
+    case 'init': init(args); break
     default: console.log(cmd)
   }
 }

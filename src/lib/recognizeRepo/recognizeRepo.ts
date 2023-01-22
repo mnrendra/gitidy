@@ -10,7 +10,7 @@ const recognizeRepo = async ({
 
   const repoName = repoPath.split('/').pop() || ''
 
-  verbose && log(c.grey(`This repo name: ${repoName}`))
+  verbose && log(c.grey(`  Repository name is ${c.magenta(repoName)}`))
 
   const result: Result = {
     repoName,

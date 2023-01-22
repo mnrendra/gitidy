@@ -47,7 +47,7 @@ const ghRepoCreate = async (repoName: string, {
     process.exit()
   }
 
-  verbose && log(c.grey(stdall))
+  verbose && log(c.grey(`  https://github.com/${c.magenta(path)}`))
 
   const result: Result = {
     owner,

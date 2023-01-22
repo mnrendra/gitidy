@@ -17,7 +17,7 @@ const ghVersion = async ({
     process.exit()
   }
 
-  verbose && log(c.grey(stdall))
+  verbose && log(c.grey(`  ${stdall.replace('\n', '\n  ')}`))
 
   return stdall
 }

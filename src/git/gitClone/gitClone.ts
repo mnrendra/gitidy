@@ -19,7 +19,7 @@ const gitClone = async (ghRepo: string, {
     process.exit()
   }
 
-  verbose && log(c.grey(stdall))
+  verbose && log(c.grey(`  ${stdall}`))
 }
 
 export default gitClone

@@ -9,16 +9,15 @@ const restoreRepo = async (repoName: string, {
 }: Options = {}) => {
   verbose && log(c.blue('• restore repo'))
 
-  const { zip, zipAlias } = getBackupDir(repoName, { skip: true })
-  const targetDir = `${process.cwd()}/..`
+  const { zip, home } = getBackupDir(repoName, { skip: true })
+  const target = `${process.cwd()}/..`
 
   const hasZip = existsSync(zip)
   if (hasZip) {
-    await compress.zip.uncompress(zip, targetDir)
+    await compress.zip.uncompress(zip, target)
   }
 
-  verbose && log(c.grey(`  from: ${zipAlias}`))
-  verbose && log(c.grey(`  to: ${targetDir}`))
+  verbose && log(c.grey(`  ${target.replace(home, '~')}`))
 }
 
 export default restoreRepo

@@ -24,7 +24,7 @@ const ghAuthStatus = async ({
 
   const ghUserName = stdall.split('Logged in to github.com as ')[1].split(' ')[0]
 
-  verbose && log(c.grey(stdall))
+  verbose && log(c.grey(`  ${stdall.replace(ghUserName, c.magenta(ghUserName))}`))
 
   return { ghUserName }
 }

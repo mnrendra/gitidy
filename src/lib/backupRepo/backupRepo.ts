@@ -11,7 +11,7 @@ const backupRepo = async (repoName: string, {
 }: Options = {}) => {
   verbose && log(c.blue('• backup repo'))
 
-  const { git, gitAlias, zip, zipAlias } = getBackupDir(repoName)
+  const { git, gitAlias, zip, zipAlias } = getBackupDir(repoName, { isForced })
 
   const files = readdirSync('./')
 
