@@ -18,7 +18,15 @@ const execPromise = (cmd: string, opts = {}) => {
         resolve(data)
       })
       .catch((err: any) => {
-        reject(err)
+        if (err && err.cmd === cmd) {
+          const data: ExecType = {
+            stdout: err.stdout,
+            stderr: err.stderr,
+            stdall: `${err.stdout} ${err.stderr}`.trim()
+          }
+
+          resolve(data)
+        } else reject(err)
       })
   })
 }
