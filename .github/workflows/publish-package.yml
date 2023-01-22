@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 16
           # registry-url: https://npm.pkg.github.com/
-          registry_url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
       - run: npm publish --access=public
