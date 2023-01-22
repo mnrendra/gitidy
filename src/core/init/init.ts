@@ -23,12 +23,16 @@ const main = async (args?: string[]) => {
   // check gh' logged status
   await ghAuthStatus({ verbose: true })
 
-  // get repo name and create Github's repo
+  // get repo name
   const { repoName } = await recognizeRepo({ verbose: true })
+
+  // backup current source codes
+  await backupRepo(repoName, { verbose: true, isForced: args?.includes('--force') })
+
+  // create Github's repo
   const { owner, name } = await ghRepoCreate(repoName, { verbose: true })
 
-  // backup current source codes, clone, and restore backup source codes
-  await backupRepo(repoName, { verbose: true })
+  // clone and restore backup source codes
   await gitClone(`${owner}/${name}`, { verbose: true })
   await restoreRepo(repoName, { verbose: true })
 }
