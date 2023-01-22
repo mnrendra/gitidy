@@ -35,9 +35,6 @@
       // @cp
       "@cp": ["cp"],
       "@cp/*": ["cp/*"],
-      // @cmds
-      "@cmds": ["cmds"],
-      "@cmds/*": ["cmds/*"],
       // @clog
       "@clog": ["clog"],
       "@clog/*": ["clog/*"],
@@ -49,7 +46,10 @@
       "@gh/*": ["gh/*"],
       // @lib
       "@lib": ["lib"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      // @core
+      "@core": ["core"],
+      "@core/*": ["core/*"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

@@ -25,7 +25,7 @@
   },
   "_moduleAliases": {
     "@package.json": "dist/package.json",
-    "@cmds": "dist/cmds",
+    "@core": "dist/core",
     "@cp": "dist/cp",
     "@clog": "dist/clog",
     "@git": "dist/git",
