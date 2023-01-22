@@ -1,25 +1,25 @@
 import { spawn } from '@cp'
 import log, { c } from '@clog'
+import { Options } from './types'
 
-type Arg = {
-  repoName: string,
-  repoOwner: string,
-  into?: string
-}
+const gitClone = async (ghRepo: string, {
+  clonedDir,
+  verbose
+}: Options = {}) => {
+  const url = `git@github.com:${ghRepo}`
 
-const gitClone = async ({
-  repoName,
-  repoOwner,
-  into
-}: Arg) => {
-  const url = `git@github.com:${repoOwner}/${repoName}`
+  const cmd = `git clone ${url} ${clonedDir || '.'}`
 
-  const { stdall } = await spawn(`git clone ${url} ${into || '.'}`)
+  verbose && log(c.blue(`• ${cmd}`))
+
+  const { stdall } = await spawn(cmd)
 
   if (!stdall.includes('Cloning into')) {
     log(c.red(stdall))
     process.exit()
   }
+
+  verbose && log(c.grey(stdall))
 }
 
 export default gitClone
