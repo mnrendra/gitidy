@@ -1,6 +1,6 @@
 {
-  "name": "gitidy",
-  "version": "0.2.0",
+  "name": "@mnrendra/gitidy",
+  "version": "0.3.0",
   "description": "A tool for tidying Git flow.",
   "main": "dist",
   "bin": {
@@ -10,7 +10,8 @@
     "build": "rm -rf ./dist && tsc && chmod +x dist/index.js",
     "start": "node .",
     "dev": "npm run build && npm start",
-    "link": "npm run build && npm link"
+    "link": "npm run build && npm link",
+    "test": "exit 0"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -44,5 +45,8 @@
   "bugs": {
     "url": "https://github.com/mnrendra/gitidy/issues"
   },
-  "homepage": "https://github.com/mnrendra/gitidy#readme"
+  "homepage": "https://github.com/mnrendra/gitidy#readme",
+  "publishConfig": {
+    "@mnrendra:registry": "https://npm.pkg.github.com"
+  }
 }
