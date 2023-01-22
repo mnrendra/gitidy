@@ -1,5 +1,5 @@
 import { spawn } from '@cp'
-import clog, { c } from '@clog'
+import log, { c } from '@clog'
 
 import { Options, Result } from './types'
 import { getAccessibility } from './utils'
@@ -14,7 +14,8 @@ const ghRepoCreate = async (repoName: string, {
   homePage,
   license,
   remote,
-  team
+  team,
+  verbose
 }: Options = {}) => {
   const args = ['repo', 'create']
 
@@ -23,7 +24,6 @@ const ghRepoCreate = async (repoName: string, {
   args.push(repository)
   args.push(getAccessibility(accessibility))
   args.push(`-d=${desciption || 'Created by Gitidy.'}`)
-
   disableIssues && args.push('--disable-issues')
   disableWiki && args.push('--disable-wiki')
   gitIgnore && args.push(`-g=${gitIgnore}`)
@@ -31,29 +31,29 @@ const ghRepoCreate = async (repoName: string, {
   license && args.push(`-l=${license}`)
   remote && args.push(`-r=${remote}`)
   team && args.push(`-t=${team}`)
-
   args.push('--add-readme')
+
+  verbose && log(c.blue(`• ${['gh', ...args].join(' ')}`))
 
   const { stdall } = await spawn('gh', args)
 
-  if (stdall.includes('already exists')) {
-    clog(c.red(`https://github.com/${c.redBright(repository)} already exist!`))
-    process.exit()
-  }
-
-  if (!stdall.includes('✓ Created repository')) {
-    clog(c.red(stdall))
-    process.exit()
-  }
-
   const owner = stdall.split('https://github.com/')[1].split('/')[0].trim()
   const name = repoName.trim()
+  const path = `${owner}/${name}`
+  const url = stdall.trim()
+
+  if (!(stdall.includes('✓ Created repository') || stdall === `https://github.com/${path}`)) {
+    log(c.red(stdall))
+    process.exit()
+  }
+
+  verbose && log(c.grey(stdall))
 
   const result: Result = {
     owner,
     name,
-    path: `${owner}/${name}`,
-    url: stdall.trim()
+    path,
+    url
   }
 
   return result

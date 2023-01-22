@@ -164,21 +164,22 @@ export type License =
   `${LicenseEnum.Unlicense}` // 'The Unlicense',
 
 export type Options = {
-  orgName?: string
-  accessibility?: Accessibility
-  desciption?: string
-  disableIssues?: boolean
-  disableWiki?: boolean
-  gitIgnore?: GitIgnore
-  homePage?: string
-  license?: License
-  remote?: string
-  team?: string
+  orgName?: string,
+  accessibility?: Accessibility,
+  desciption?: string,
+  disableIssues?: boolean,
+  disableWiki?: boolean,
+  gitIgnore?: GitIgnore,
+  homePage?: string,
+  license?: License,
+  remote?: string,
+  team?: string,
+  verbose?: boolean,
 }
 
 export type Result = {
-  owner: string
-  name: string
-  path: string
-  url: string
+  owner: string,
+  name: string,
+  path: string,
+  url: string,
 }
