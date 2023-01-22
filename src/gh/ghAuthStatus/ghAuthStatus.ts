@@ -1,7 +1,14 @@
 import { exec } from '@cp'
 import log, { c } from '@clog'
+import { Options } from './types'
 
-const ghAuthStatus = async () => {
+const ghAuthStatus = async ({
+  verbose
+}: Options = {}) => {
+  const cmd = 'gh auth status'
+
+  verbose && log(c.blue(`• ${cmd}`))
+
   const { stdall } = await exec('gh auth status')
 
   if (stdall.includes('You are not logged')) {
@@ -16,6 +23,8 @@ const ghAuthStatus = async () => {
   }
 
   const ghUserName = stdall.split('Logged in to github.com as ')[1].split(' ')[0]
+
+  verbose && log(c.grey(stdall))
 
   return { ghUserName }
 }
