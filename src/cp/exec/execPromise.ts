@@ -1,5 +1,6 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
+import log, { c } from '@clog'
 import { ExecType } from './types'
 
 const execPromise = (cmd: string, opts = {}) => {
@@ -18,7 +19,18 @@ const execPromise = (cmd: string, opts = {}) => {
         resolve(data)
       })
       .catch((err: any) => {
-        reject(err)
+        if (err && err.cmd === cmd) {
+          // const data: ExecType = {
+          //   stdout: err.stdout,
+          //   stderr: err.stderr,
+          //   stdall: `${err.stdout} ${err.stderr}`.trim()
+          // }
+
+          // resolve(data)
+
+          log(c.red(`${err.stdout} ${err.stderr}`.trim().split('\n').map(s => `  ${s}\n`).join('')))
+          process.exit()
+        } else reject(err)
       })
   })
 }
