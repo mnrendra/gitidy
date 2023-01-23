@@ -26,7 +26,6 @@
     "typescript": "^4.9.4"
   },
   "_moduleAliases": {
-    "@package.json": "dist/package.json",
     "@core": "dist/core",
     "@cp": "dist/cp",
     "@clog": "dist/clog",
