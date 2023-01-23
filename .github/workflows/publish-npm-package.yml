@@ -44,7 +44,7 @@ jobs:
       - name: Set registry
         run: npm config set registry https://registry.npmjs.org/
       - name: Set authentication
-        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.NPM_TOKEN }}
+        run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
       - name: Publish package
         run: npm publish --access=public
         env:
