@@ -1,6 +1,6 @@
 {
   "name": "gitidy",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A tool for tidying Git flow.",
   "private": false,
   "main": "dist",
