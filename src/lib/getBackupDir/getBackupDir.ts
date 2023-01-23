@@ -1,18 +1,20 @@
 import { homedir } from 'node:os'
 import { existsSync, mkdirSync } from 'node:fs'
 import rimraf from 'rimraf'
-import clog, { c } from '@clog'
-// import { name } from '@package.json'
+import log, { c } from '@clog'
+import { packageJSON } from '@lib'
 import { Options, Result } from './types'
 
 const getBackupDir = (repoName: string, {
   isForced,
   skip
 }: Options = {}) => {
+  const { name } = packageJSON()
+
   const home = homedir()
   const homeAlias = '~'
 
-  const base = `${home}/.gitidy` // `${home}/.${name}`
+  const base = `${home}/.${name}`
   const baseAlias = base.replace(home, '~')
 
   const hasBase = existsSync(base)
@@ -31,8 +33,8 @@ const getBackupDir = (repoName: string, {
   if (hasRepo) {
     if (!skip) {
       if (!isForced) {
-        clog(c.red(`  ${c.redBright(repoAlias)} is already exist.`))
-        clog(c.red(`  Use ${c.redBright('--force')} to replace it.`))
+        log(c.red(`  ${c.redBright(repoAlias)} is already exist.`))
+        log(c.red(`  Use ${c.redBright('--force')} to replace it.`))
         process.exit()
       }
 
