@@ -1,4 +1,8 @@
 import {
+  protectedBranches,
+} from '@api'
+
+import {
   gitVersion,
   gitClone,
   gitCheckout
@@ -19,6 +23,8 @@ import {
 
 import log, { c } from '@clog'
 
+import * as rules from './branchProtectionRules'
+
 const main = async (args?: string[]) => {
   // check required commands
   await gitVersion({ verbose: true })
@@ -35,10 +41,17 @@ const main = async (args?: string[]) => {
 
   // create Github's repo
   const { owner, name } = await ghRepoCreate(repoName, { verbose: true })
-  // create Github's repo branches
+
+  // create Github's branches and protect them
   const refs = await ghAPIs.refs({ owner, repo: name })
+  const protectBranch = await protectedBranches(owner, name)
+
   const main = await refs.get('main', { verbose: true })
+  protectBranch.update('main', rules.main, { verbose: true })
+
   const dev = await refs.post(main.object.sha, 'dev', { verbose: true })
+  protectBranch.update('dev', rules.dev, { verbose: true })
+
   const feat = await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
   // clone and restore backup source codes
