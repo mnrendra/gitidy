@@ -1,10 +1,10 @@
 import { exec } from '@cp'
+import log, { c } from '@clog'
+import { Options } from './types'
 
-const deleteRefs = async (
-  owner: string,
-  repo: string,
-  branch: string
-) => new Promise<string>((resolve, reject) => {
+const deleteRefs = async (owner: string, repo: string, branch: string, {
+  verbose
+}: Options = {}) => new Promise<string>((resolve, reject) => {
   try {
     const args = ['api']
 
@@ -14,7 +14,10 @@ const deleteRefs = async (
 
     const cli = ['gh', ...args].join(' ')
 
+    verbose && log(c.blue(`• ${cli}`))
+
     exec(cli).then(({ stdall }) => {
+      verbose && log(c.grey(`  branch: ${branch}`))
       resolve(stdall)
     }).catch(reject)
   } catch (err) {

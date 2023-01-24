@@ -10,3 +10,12 @@ export type Data = {
   url: string,
   object: Object,
 }
+
+export type RefsProps = {
+  owner: string,
+  repo: string
+}
+
+export type Options = {
+  verbose?: boolean,
+}

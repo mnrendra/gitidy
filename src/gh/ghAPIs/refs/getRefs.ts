@@ -1,11 +1,10 @@
 import { exec } from '@cp'
-import { Data } from './types'
+import log, { c } from '@clog'
+import { Data, Options } from './types'
 
-const getRefs = async (
-  owner: string,
-  repo: string,
-  branch: string
-) => new Promise<Data>((resolve, reject) => {
+const getRefs = async (owner: string, repo: string, branch: string, {
+  verbose
+}: Options = {}) => new Promise<Data>((resolve, reject) => {
   try {
     const args = ['api']
 
@@ -15,9 +14,12 @@ const getRefs = async (
 
     const cli = ['gh', ...args].join(' ')
 
+    verbose && log(c.blue(`• ${cli}`))
+
     exec(cli).then(({ stdall }) => {
       try {
         const data: Data = JSON.parse(stdall)
+        verbose && log(c.grey(`  sha: ${data && data.object && data.object.sha ? data.object.sha : '-'}`))
         resolve(data)
       } catch (err) {
         reject(err)
