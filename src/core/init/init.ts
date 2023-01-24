@@ -1,12 +1,14 @@
 import {
   gitVersion,
-  gitClone
+  gitClone,
+  gitCheckout
 } from '@git'
 
 import {
   ghVersion,
   ghAuthStatus,
-  ghRepoCreate
+  ghRepoCreate,
+  ghAPIs
 } from '@gh'
 
 import {
@@ -33,10 +35,18 @@ const main = async (args?: string[]) => {
 
   // create Github's repo
   const { owner, name } = await ghRepoCreate(repoName, { verbose: true })
+  // create Github's repo branches
+  const refs = await ghAPIs.refs({ owner, repo: name })
+  const main = await refs.get('main', { verbose: true })
+  const dev = await refs.post(main.object.sha, 'dev', { verbose: true })
+  const feat = await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
   // clone and restore backup source codes
   await gitClone(`${owner}/${name}`, { verbose: true })
   await restoreRepo(repoName, { verbose: true })
+
+  // checkout feat/init_project
+  await gitCheckout('feat/init_project', { verbose: true })
 
   log(c.greenBright(`Done!`))
   log(c.green(`New ${c.greenBright('git')} and ${c.greenBright('GitHub')} repository successfully created!`))
