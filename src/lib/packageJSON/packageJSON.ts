@@ -1,7 +1,7 @@
-import { getRoot } from '@lib'
+import { root } from '@lib'
 
 const packageJSON = () => {
-  return require(`${getRoot()}/package.json`)
+  return require(`${root()}/package.json`)
 }
 
 export default packageJSON

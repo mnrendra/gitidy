@@ -1,56 +1,65 @@
-import {
-  gitVersion,
-  gitClone,
-  gitCheckout
-} from '@git'
-
-import {
-  ghVersion,
-  ghAuthStatus,
-  ghRepoCreate,
-  ghAPIs
-} from '@gh'
-
-import {
-  recognizeRepo,
-  backupRepo,
-  restoreRepo
-} from '@lib'
-
 import log, { c } from '@clog'
+import lib from '@lib'
+import git from '@git'
+import gh from '@gh'
+import api from '@api'
+
+import rules from './rules'
 
 const main = async (args?: string[]) => {
-  // check required commands
-  await gitVersion({ verbose: true })
-  await ghVersion({ verbose: true })
+  // git version
+  await git.version({ verbose: true })
 
-  // check gh' logged status
-  await ghAuthStatus({ verbose: true })
+  // gh version
+  await gh.version({ verbose: true })
 
-  // get repo name
-  const { repoName } = await recognizeRepo({ verbose: true })
+  // gh auth status
+  await gh.auth.status({ verbose: true })
 
-  // backup current source codes
-  await backupRepo(repoName, { verbose: true, isForced: args?.includes('--force') })
+  // lib repo recognize
+  const { repoName } = await lib.repo.recognize({ verbose: true })
 
-  // create Github's repo
-  const { owner, name } = await ghRepoCreate(repoName, { verbose: true })
-  // create Github's repo branches
-  const refs = await ghAPIs.refs({ owner, repo: name })
+  // lib repo backup
+  await lib.repo.backup(repoName, { verbose: true, isForced: args?.includes('--force') })
+
+  // gh repo create
+  const { owner, name } = await gh.repo.create(repoName, { verbose: true })
+
+  // gh api (refs)
+  const refs = await gh.api.refs({ owner, repo: name })
+
+  // api (protectedBranches)
+  const pb = await api.protectedBranches({ owner, repo: name })
+
+  // get [main] refs
   const main = await refs.get('main', { verbose: true })
+
+  // protect branch [main]
+  await pb.updateBranchProtection('main', rules.main, { verbose: true })
+
+  // create [dev] branch
   const dev = await refs.post(main.object.sha, 'dev', { verbose: true })
-  const feat = await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
-  // clone and restore backup source codes
-  await gitClone(`${owner}/${name}`, { verbose: true })
-  await restoreRepo(repoName, { verbose: true })
+  // protect branch [dev]
+  await pb.updateBranchProtection('dev', rules.dev, { verbose: true })
 
-  // checkout feat/init_project
-  await gitCheckout('feat/init_project', { verbose: true })
+  // create [feat/init_project] branch
+  await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
+  // clone
+  await git.clone(`${owner}/${name}`, { verbose: true })
+
+  // restore source code
+  await lib.repo.restore(repoName, { verbose: true })
+
+  // checkout to [feat/init_project]
+  await git.checkout('feat/init_project', { verbose: true })
+
+  // done !
   log(c.greenBright(`Done!`))
   log(c.green(`New ${c.greenBright('git')} and ${c.greenBright('GitHub')} repository successfully created!`))
   log(c.green(`GitHub repository: ${c.greenBright(`https://github.com/${owner}/${name}`)}`))
 }
+
 
 export default main
