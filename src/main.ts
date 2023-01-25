@@ -4,7 +4,7 @@ import { argv } from '@cp'
 import { init, version } from '@core'
 
 const main = async () => {
-  const { name } = packageJSON()
+  const app = packageJSON()
 
   const { cmd, args } = await argv()
 
@@ -20,7 +20,7 @@ const main = async () => {
     case undefined: version(); break
     //
     default:
-      log(c.red(`${c.redBright(cmd)} is not a ${name} command`))
+      log(c.red(`${c.redBright(cmd)} is not a ${app.name} command`))
       log(c.red(`See ${c.redBright('gitidy --help')}`))
   }
 }

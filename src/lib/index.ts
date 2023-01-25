@@ -1,15 +1,19 @@
-import recognizeRepo from './recognizeRepo'
-import getBackupDir from './getBackupDir'
-import backupRepo from './backupRepo'
-import restoreRepo from './restoreRepo'
-import getRoot from './getRoot'
+import dotDir from './dotDir'
+import root from './root'
 import packageJSON from './packageJSON'
 
+import repo from './repo'
+
 export {
-  recognizeRepo,
-  getBackupDir,
-  backupRepo,
-  restoreRepo,
-  getRoot,
-  packageJSON
+  dotDir,
+  root,
+  packageJSON,
+  repo
+}
+
+export default {
+  dotDir,
+  root,
+  packageJSON,
+  repo
 }
