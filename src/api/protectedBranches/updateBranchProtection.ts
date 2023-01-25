@@ -15,12 +15,7 @@ const updateBranchProtection = async (
 
   const octo = await octokit()
 
-  const res = await octo.request(`PUT /repos/${owner}/${repo}/branches/${branch}/protection`, {
-    owner,
-    repo,
-    branch,
-    ...rule,
-  })
+  const res = await octo.request(`PUT /repos/${owner}/${repo}/branches/${branch}/protection`, rule)
 
   verbose && log(c.grey(`  ${branch} branch is protected ✔️`))
 
