@@ -29,19 +29,20 @@ const main = async (args?: string[]) => {
   const refs = await gh.api.refs({ owner, repo: name })
 
   // api (protectedBranches)
-  const pb = await api.protectedBranches({ owner, repo: name })
+  const protectedBranches = await api.protectedBranches({ owner, repo: name })
 
   // get [main] refs
   const main = await refs.get('main', { verbose: true })
 
   // protect branch [main]
-  await pb.updateBranchProtection('main', rules.main, { verbose: true })
+  await protectedBranches.updateBranchProtection('main', rules.main, { verbose: true })
+  await protectedBranches.createCommitSignatureProtection('main', { verbose: true })
 
   // create [dev] branch
   const dev = await refs.post(main.object.sha, 'dev', { verbose: true })
 
   // protect branch [dev]
-  await pb.updateBranchProtection('dev', rules.dev, { verbose: true })
+  await protectedBranches.updateBranchProtection('dev', rules.dev, { verbose: true })
 
   // create [feat/init_project] branch
   await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
