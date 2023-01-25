@@ -47,10 +47,10 @@ const main = async (args?: string[]) => {
   const protectBranch = await protectedBranches(owner, name)
 
   const main = await refs.get('main', { verbose: true })
-  protectBranch.update('main', rules.main, { verbose: true })
+  await protectBranch.update('main', rules.main, { verbose: true })
 
   const dev = await refs.post(main.object.sha, 'dev', { verbose: true })
-  protectBranch.update('dev', rules.dev, { verbose: true })
+  await protectBranch.update('dev', rules.dev, { verbose: true })
 
   const feat = await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
