@@ -1,8 +1,8 @@
 import { Octokit } from 'octokit'
-import { ghAuthToken } from '@gh'
+import { auth } from '@gh'
 
 const octokit = async () => {
-  const token = await ghAuthToken()
+  const token = await auth.token()
   const octo = new Octokit({ auth: token })
   return octo
 }

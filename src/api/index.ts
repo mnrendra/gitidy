@@ -1,7 +1,9 @@
-import protectedBranches, { updateBranchProtection } from './protectedBranches'
+import protectedBranches from './protectedBranches'
 
 export {
-  // protectedBranches
-  protectedBranches,
-  updateBranchProtection
+  protectedBranches
+}
+
+export default {
+  protectedBranches
 }

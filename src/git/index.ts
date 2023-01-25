@@ -1,9 +1,15 @@
-import gitVersion from './gitVersion'
-import gitClone from './gitClone'
-import gitCheckout from './gitCheckout'
+import version from './version'
+import clone from './clone'
+import checkout from './checkout'
 
 export {
-  gitVersion,
-  gitClone,
-  gitCheckout
+  version,
+  clone,
+  checkout
+}
+
+export default {
+  version,
+  clone,
+  checkout
 }

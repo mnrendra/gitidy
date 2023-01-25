@@ -1,5 +1,5 @@
 import protectedBranches from './protectedBranches'
-import updateBranchProtection from './update'
+import updateBranchProtection from './updateBranchProtection'
 
 export {
   updateBranchProtection

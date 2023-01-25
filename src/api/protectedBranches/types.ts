@@ -72,6 +72,11 @@ export const defRule: Rule = {
   allow_fork_syncing: false
 }
 
+export type Props = {
+  owner: string,
+  repo: string
+}
+
 export type Options = {
   verbose: boolean
 }

@@ -1,13 +1,18 @@
-import ghVersion from './ghVersion'
-import ghAuthStatus from './ghAuthStatus'
-import ghAuthToken from './ghAuthToken'
-import ghRepoCreate from './ghRepoCreate'
-import * as ghAPIs from './ghAPIs'
+import version from './version'
+import auth from './auth'
+import repo from './repo'
+import api from './api'
 
 export {
-  ghVersion,
-  ghAuthStatus,
-  ghAuthToken,
-  ghRepoCreate,
-  ghAPIs
+  version,
+  auth,
+  repo,
+  api
+}
+
+export default {
+  version,
+  auth,
+  repo,
+  api
 }
