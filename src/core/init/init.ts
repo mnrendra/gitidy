@@ -47,6 +47,11 @@ const main = async (args?: string[]) => {
   // create [feat/init_project] branch
   await refs.post(dev.object.sha, 'feat/init_project', { verbose: true })
 
+  await protectedBranches.updateBranchProtection('release', rules.release, { verbose: true })
+  await protectedBranches.createCommitSignatureProtection('release', { verbose: true })
+
+  await protectedBranches.updateBranchProtection('hotfix', rules.hotfix, { verbose: true })
+
   // clone
   await git.clone(`${owner}/${name}`, { verbose: true })
 
