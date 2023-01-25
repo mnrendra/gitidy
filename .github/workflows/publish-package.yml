@@ -15,8 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci --production
-      - run: npm i -D @types/rimraf
+      - run: npm ci
       - run: npm run build
       - run: npm test
       - run: npm config set registry https://registry.npmjs.org/
