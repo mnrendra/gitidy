@@ -1,9 +1,13 @@
 import protectedBranches from './protectedBranches'
 
+import graphql from './graphql'
+
 export {
-  protectedBranches
+  protectedBranches,
+  graphql
 }
 
 export default {
-  protectedBranches
+  protectedBranches,
+  graphql
 }
