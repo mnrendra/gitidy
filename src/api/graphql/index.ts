@@ -1,12 +1,12 @@
-import * as branchProtection from './branchProtection'
-import * as repository from './repository'
+import * as queries from './queries'
+import * as mutations from './mutations'
 
 export {
-  branchProtection,
-  repository
+  queries,
+  mutations
 }
 
 export default {
-  branchProtection,
-  repository
+  queries,
+  mutations
 }
