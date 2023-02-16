@@ -1,5 +1,5 @@
 import log, { c } from '@clog'
-import octokit from '../octokit'
+import octokit from '@api/octokit'
 import { Rule, defRule, Options } from './types'
 
 const updateBranchProtection = async (

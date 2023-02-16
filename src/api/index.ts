@@ -1,13 +1,14 @@
-import protectedBranches from './protectedBranches'
+// import protectedBranches from './protectedBranches'
 
 import graphql from './graphql'
+import rest from './rest'
 
 export {
-  protectedBranches,
-  graphql
+  graphql,
+  rest
 }
 
 export default {
-  protectedBranches,
-  graphql
+  graphql,
+  rest
 }

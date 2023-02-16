@@ -1,4 +1,4 @@
-import protectedBranches from './protectedBranches'
+// import protectedBranches from './protectedBranches'
 
 import updateBranchProtection from './updateBranchProtection'
 import createCommitSignatureProtection from './createCommitSignatureProtection'
@@ -8,4 +8,9 @@ export {
   createCommitSignatureProtection
 }
 
-export default protectedBranches
+export default {
+  updateBranchProtection,
+  createCommitSignatureProtection
+}
+
+// export default protectedBranches
