@@ -3,5 +3,5 @@ import version from './version'
 
 export {
   init,
-  version
+  version,
 }

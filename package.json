@@ -32,8 +32,8 @@
     "@cp": "dist/cp",
     "@clog": "dist/clog",
     "@git": "dist/git",
-    "@gh": "dist/gh",
-    "@lib": "dist/lib"
+    "@lib": "dist/lib",
+    "@utils": "dist/utils"
   },
   "repository": {
     "type": "git",
