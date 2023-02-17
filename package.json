@@ -1,6 +1,6 @@
 {
   "name": "gitidy",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A tool for tidying Git flow.",
   "private": false,
   "main": "dist",
@@ -32,8 +32,8 @@
     "@cp": "dist/cp",
     "@clog": "dist/clog",
     "@git": "dist/git",
-    "@gh": "dist/gh",
-    "@lib": "dist/lib"
+    "@lib": "dist/lib",
+    "@utils": "dist/utils"
   },
   "repository": {
     "type": "git",
