@@ -1,5 +1,5 @@
 import octokit from '@api/octokit'
-import { isJSON } from '@utils/validator'
+import { isJSON, isString, isArray } from '@utils/validator'
 import { inputParser } from '@utils/graphql'
 import { CreateBranchProtectionRuleInput, defCreateBranchProtectionRuleInput, defResponse } from './types'
 
@@ -8,7 +8,7 @@ const { toString, toNumber, toBoolean, toArray } = inputParser
 const createBranchProtectionRule = async (
   repositoryId: string,
   pattern: string,
-  rule: CreateBranchProtectionRuleInput
+  rule: CreateBranchProtectionRuleInput,
 ) => {
   const response = defResponse
 
@@ -19,7 +19,7 @@ const createBranchProtectionRule = async (
       ...defCreateBranchProtectionRuleInput,
       ...rule,
       pattern,
-      repositoryId
+      repositoryId,
     }
 
     const res: any = await octo.graphql(`
@@ -54,19 +54,46 @@ const createBranchProtectionRule = async (
           reviewDismissalActorIds: ${toArray(input.reviewDismissalActorIds)},
         }) {
           clientMutationId
+          branchProtectionRule {
+            matchingRefs(first: 100) {
+              nodes {
+                id
+                name
+                target {
+                  id
+                  oid
+                  repository {
+                    id
+                  }
+                }
+              }
+            }
+          }
         }
       }
     `)
 
-    if (!isJSON(res) || !isJSON(res.createBranchProtectionRule)) {
+    if (!(
+      isJSON(res) &&
+      isJSON(res.createBranchProtectionRule) &&
+      isString(res.createBranchProtectionRule.clientMutationId) &&
+      isJSON(res.createBranchProtectionRule.branchProtectionRule) &&
+      isJSON(res.createBranchProtectionRule.branchProtectionRule.matchingRefs) &&
+      isArray(res.createBranchProtectionRule.branchProtectionRule.matchingRefs.nodes)
+    )) {
       response.error = `Invalid response: ${res}`
       return response
     }
 
     response.data = {
       createBranchProtectionRule: {
-        clientMutationId: res.createBranchProtectionRule.clientMutationId
-      }
+        clientMutationId: res.createBranchProtectionRule.clientMutationId,
+        branchProtectionRule: {
+          matchingRefs: {
+            nodes: res.createBranchProtectionRule.branchProtectionRule.matchingRefs.nodes,
+          },
+        },
+      },
     }
 
     return response

@@ -1,9 +1,9 @@
 import repository from './repository'
 
 export {
-  repository
+  repository,
 }
 
 export default {
-  repository
+  repository,
 }

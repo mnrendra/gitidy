@@ -1,9 +1,9 @@
 import * as branches from './branches'
 
 export {
-  branches
+  branches,
 }
 
 export default {
-  branches
+  branches,
 }

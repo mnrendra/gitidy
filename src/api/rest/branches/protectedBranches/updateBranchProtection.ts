@@ -8,7 +8,7 @@ const updateBranchProtection = async (
   branch: string,
   rule: Rule = defRule,
   {
-    verbose
+    verbose,
   }: Options
 ) => {
   verbose && log(c.blue(`• Protecting ${branch} branch`))

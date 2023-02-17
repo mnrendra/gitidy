@@ -1,19 +1,18 @@
 import { mutations } from '@api/graphql'
-import { isJSON, isString } from '@utils/validator'
+import { CreateBranchProtectionRuleInput } from '@api/graphql/mutations/createBranchProtectionRule/types'
 
-const createBranchProtection = async (repoId: string, pattern: string, rules: any) => {
+const createBranchProtection = async (
+  repoId: string,
+  pattern: string,
+  rules: CreateBranchProtectionRuleInput,
+) => {
   const { error, data } = await mutations.createBranchProtectionRule(
     repoId,
     pattern,
-    rules
+    rules,
   )
 
-  if (
-    error ||
-    !isJSON(data) ||
-    !isJSON(data.createBranchProtectionRule) ||
-    !isString(data.createBranchProtectionRule.clientMutationId)
-  ) throw new Error(`Invalid response:\n${{ error, data }}`)
+  if (error) throw new Error(error)
 
   return data
 }

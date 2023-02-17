@@ -7,7 +7,7 @@ const createCommitSignatureProtection = async (
   repo: string,
   branch: string,
   {
-    verbose
+    verbose,
   }: Options
 ) => {
   verbose && log(c.blue(`• Protecting ${branch} branch`))

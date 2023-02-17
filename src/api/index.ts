@@ -1,14 +1,15 @@
-// import protectedBranches from './protectedBranches'
-
 import graphql from './graphql'
 import rest from './rest'
+import cli from './cli'
 
 export {
   graphql,
-  rest
+  rest,
+  cli,
 }
 
 export default {
   graphql,
-  rest
+  rest,
+  cli,
 }

@@ -1,5 +1,5 @@
 import { Octokit } from 'octokit'
-import { auth } from '@gh'
+import { auth } from '@api/cli'
 
 const octokit = async () => {
   const token = await auth.token()

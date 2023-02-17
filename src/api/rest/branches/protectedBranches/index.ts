@@ -1,16 +1,12 @@
-// import protectedBranches from './protectedBranches'
-
 import updateBranchProtection from './updateBranchProtection'
 import createCommitSignatureProtection from './createCommitSignatureProtection'
 
 export {
   updateBranchProtection,
-  createCommitSignatureProtection
+  createCommitSignatureProtection,
 }
 
 export default {
   updateBranchProtection,
-  createCommitSignatureProtection
+  createCommitSignatureProtection,
 }
-
-// export default protectedBranches

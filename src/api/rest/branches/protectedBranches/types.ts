@@ -6,12 +6,12 @@ type UsersTeams = {
 type UsersTeamsApps = {
   users: string[],
   teams: string[],
-  apps: string[]
+  apps: string[],
 }
 
 type RequiredStatusChecks = {
   strict: boolean,
-  contexts: string[]
+  contexts: string[],
 }
 
 type RequiredPullRequestReviews = {
@@ -20,7 +20,7 @@ type RequiredPullRequestReviews = {
   required_approving_review_count: number,
   require_last_push_approval: boolean,
   dismissal_restrictions?: UsersTeams,
-  bypass_pull_request_allowances?: UsersTeams
+  bypass_pull_request_allowances?: UsersTeams,
 }
 
 export type Rule = {
@@ -34,7 +34,7 @@ export type Rule = {
   block_creations: boolean,
   required_conversation_resolution: boolean,
   lock_branch: boolean,
-  allow_fork_syncing: boolean
+  allow_fork_syncing: boolean,
 }
 
 export const defRule: Rule = {
@@ -61,7 +61,7 @@ export const defRule: Rule = {
   // restrictions: {
   //   users: [],
   //   teams: [],
-  //   apps: []
+  //   apps: [],
   // },
   required_linear_history: false,
   allow_force_pushes: false,
@@ -69,14 +69,14 @@ export const defRule: Rule = {
   block_creations: false,
   required_conversation_resolution: false,
   lock_branch: false,
-  allow_fork_syncing: false
+  allow_fork_syncing: false,
 }
 
 export type Props = {
   owner: string,
-  repo: string
+  repo: string,
 }
 
 export type Options = {
-  verbose: boolean
+  verbose: boolean,
 }

@@ -3,10 +3,10 @@ import * as mutations from './mutations'
 
 export {
   queries,
-  mutations
+  mutations,
 }
 
 export default {
   queries,
-  mutations
+  mutations,
 }

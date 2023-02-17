@@ -1,5 +1,24 @@
+type Owner = {
+  id: string,
+  login: string,
+}
+
+type Target = {
+  id: string,
+  oid: string,
+}
+
+type DefaultBranchRef = {
+  id: string,
+  name: string,
+  target: Target,
+}
+
 type GraphQLRepositoryResponse = {
   id: string,
+  name: string,
+  owner: Owner,
+  defaultBranchRef: DefaultBranchRef,
 }
 
 type Data = {
@@ -15,7 +34,20 @@ export const defResponse: Response = {
   error: null,
   data: {
     repository: {
-      id: ''
-    }
+      id: '',
+      name: '',
+      owner: {
+        id: '',
+        login: '',
+      },
+      defaultBranchRef: {
+        id: '',
+        name: '',
+        target: {
+          id: '',
+          oid: '',
+        },
+      },
+    },
   },
 }

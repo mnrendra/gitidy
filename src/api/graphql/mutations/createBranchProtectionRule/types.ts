@@ -63,12 +63,37 @@ export const defCreateBranchProtectionRuleInput: CreateBranchProtectionRuleInput
   reviewDismissalActorIds: [],
 }
 
-type GraphQLCreateBranchProtectionRuleResponse = {
+type Repository = {
+  id: string,
+}
+
+type Target = {
+  id: string,
+  oid: string,
+  repository: Repository,
+}
+
+type Node = {
+  id: string,
+  name: string,
+  target: Target,
+}
+
+type MatchingRefs = {
+  nodes: Node[],
+}
+
+type BranchProtectionRule = {
+  matchingRefs: MatchingRefs,
+}
+
+type CreateBranchProtectionRule = {
   clientMutationId: string,
+  branchProtectionRule: BranchProtectionRule,
 }
 
 type Data = {
-  createBranchProtectionRule: GraphQLCreateBranchProtectionRuleResponse,
+  createBranchProtectionRule: CreateBranchProtectionRule,
 }
 
 export type Response = {
@@ -81,6 +106,11 @@ export const defResponse: Response = {
   data: {
     createBranchProtectionRule: {
       clientMutationId: '',
+      branchProtectionRule: {
+        matchingRefs: {
+          nodes: [],
+        },
+      },
     },
   },
 }

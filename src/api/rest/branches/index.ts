@@ -1,9 +1,9 @@
 import * as protectedBranches from './protectedBranches'
 
 export {
-  protectedBranches
+  protectedBranches,
 }
 
 export default {
-  protectedBranches
+  protectedBranches,
 }

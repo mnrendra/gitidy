@@ -16,7 +16,7 @@ const protectedBranches = async ({ owner, repo }: Props) => {
 
   return {
     updateBranchProtection,
-    createCommitSignatureProtection
+    createCommitSignatureProtection,
   }
 }
 

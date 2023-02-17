@@ -1,9 +1,12 @@
 import createBranchProtectionRule from './createBranchProtectionRule'
+import createRef from './createRef'
 
 export {
-  createBranchProtectionRule
+  createBranchProtectionRule,
+  createRef,
 }
 
 export default {
-  createBranchProtectionRule
+  createBranchProtectionRule,
+  createRef,
 }
