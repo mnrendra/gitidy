@@ -42,9 +42,6 @@
       // @git
       "@git": ["git"],
       "@git/*": ["git/*"],
-      // @gh
-      "@gh": ["gh"],
-      "@gh/*": ["gh/*"],
       // @lib
       "@lib": ["lib"],
       "@lib/*": ["lib/*"],
